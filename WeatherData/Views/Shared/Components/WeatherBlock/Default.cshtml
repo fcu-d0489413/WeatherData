@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+@model WeatherData.Models.SimpleWeatherService.WeatherData
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div style="border: 1px solid #ddd; width: 120px; padding: 6px">
+        <fieldset>
+            <legend>
+                @Model.ZoneName
+            </legend>
+            <div>
+                <div style="font-size: 1.2em; color: cadetblue">
+                    @Model.Status
+                </div>
+                <div style="color: darkslategrey">
+                    @Model.MinTemp° ~ @Model.MaxTemp°
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</body>
+</html>
