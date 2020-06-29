@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
+using System.Drawing;
+using System.IO;
 using System.Threading.Tasks;
 using WeatherData.ViewComponents;
 
@@ -18,6 +20,7 @@ namespace WeatherData.Models
         {
             public string ZoneName { get; set; }
             public string Status { get; set; }
+            public string image { get; set; }
             public string MaxTemp { get; set; }
             public string MinTemp { get; set; }
         }
@@ -45,6 +48,7 @@ namespace WeatherData.Models
                         .GetProperty("parameter").GetProperty("parameterName").GetString();
                 return new WeatherData
                 {
+                    ZoneName = "臺北市",
                     Status = readParameterName("Wx"),
                     MaxTemp = readParameterName("MaxT"),
                     MinTemp = readParameterName("MinT")
@@ -78,9 +82,25 @@ namespace WeatherData.Models
                 {
                     ZoneName = zoneName,
                     Status = readParameterName("Wx"),
+                    image = "~/Image/" + readParameterName("Wx") + ".jpg",
                     MaxTemp = readParameterName("MaxT"),
                     MinTemp = readParameterName("MinT")
                 };
+            }
+        }
+
+        public void ChangeSize(string imageUrl)
+        {
+            if (imageUrl.Length > 0)
+            {
+                //FileInfo file = new FileInfo(imageUrl);
+                //var sizeInBytes = file.Length;
+
+                Bitmap img = new Bitmap(imageUrl);
+
+                var imgHeight = img.Height;
+                var imgWidth = img.Width;
+                img.Save(imageUrl);
             }
         }
     }

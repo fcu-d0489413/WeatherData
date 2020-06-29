@@ -15,7 +15,7 @@ namespace WeatherData.ViewComponents
             var svc = new SimpleWeatherService();
             var data = svc.GetTaipeiWeatherFromOpenDataApi();
 
-            return $"現在台北天氣：{data.Status} /氣溫：{data.MinTemp}° - {data.MaxTemp}°";
+            return $"現在{data.ZoneName}天氣：{data.Status} /氣溫：{data.MinTemp}° - {data.MaxTemp}°";
         }
     }
 }
